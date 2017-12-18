@@ -1,12 +1,16 @@
 import {connect} from 'react-redux';
 import Home from '../components/Home';
-import {userLogin} from '../module/home';
+import {
+    setSize,
+    calculateSize
+} from '../module/home';
 
 const mapStateToProps=(state)=>({
-    user:state.home.user || {}
+    size:state.home.size || {}
 });
 
 const mapActionCreators={
-    userLogin
+    setSize,calculateSize
+    
 }
 export default connect(mapStateToProps,mapActionCreators)(Home);

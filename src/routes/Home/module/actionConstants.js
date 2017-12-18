@@ -1,3 +1,4 @@
 export default {
-    USER_LOGIN:"USER_LOGIN"
+    SET_SIZE:"SET_SIZE",
+    SET_SIZERESULT:"SET_SIZERESULT"
 }

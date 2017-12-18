@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Text} from 'react-native';
 import { Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 export default class HeaderComponent extends Component {
   render() {
@@ -10,13 +11,18 @@ export default class HeaderComponent extends Component {
           </Button>
         </Left>
         <Body>
-          <Title>Header</Title>
+          <Title>ESO - FIT ME ?</Title>
         </Body>
-        <Right>
+        {
+          this.props.back &&
+          <Right>
           <Button transparent>
+            <Text>{this.props.back}</Text>
             <Icon name='arrow-back' />
           </Button>
         </Right>
+        }
+      
       </Header>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Actions, Scene } from 'react-native-router-flux';
 import HomeContainer from './Home/containers/HomeContainer';
+import ProgramContainer from './Program/containers/ProgramContainer';
 import Favorites from './favorites';
 import Calls from './calls';
 import SideBar from './SideBar/components/SideBar';
@@ -16,6 +16,13 @@ export const Home=StackNavigator({
     headerMode:'none'
 });
 
+export const Program=StackNavigator({
+    Program:{
+        screen:ProgramContainer
+    }
+},{
+    headerMode:'none'
+})
 
 export const Tabs = TabNavigator({
     Favorites: {
@@ -26,7 +33,7 @@ export const Tabs = TabNavigator({
         },
     },
     Calls: {
-        screen: Calls,
+        screen: Program,
         navigationOptions: {
             title: 'Calls',
             tabBarIcon: ({focused}) => <Ionicons name="phone" label="Calls" selected={focused}/>              
@@ -40,7 +47,7 @@ export const Tabs = TabNavigator({
 
 const Drawer=DrawerNavigator({
     Home:{screen:Home},
-    Tabs:{screen:Tabs}
+    Program:{screen:Program}
 },{
     initialRouteName:'Home',
     contentOptions: {
@@ -56,14 +63,11 @@ export const Router = StackNavigator({
     },
     Home:{
         screen:Home
+    },
+    Program:{
+        screen:Program
     }
 },{
     initialRouteName:'Drawer',
     headerMode:'none'
 })
-
-/*const scene=Actions.create(
-    <Scene key="root" hideNavBar>
-        <Scene key="home" component={HomeContainer} title="home" initial/>
-    </Scene>
-)*/
