@@ -11,15 +11,12 @@ export default class HeaderComponent extends Component {
           </Button>
         </Left>
         <Body>
-          <Title>ESO - FIT ME ?</Title>
+          <Title>FIT ME ?</Title>
         </Body>
         {
           this.props.back &&
           <Right>
-          <Button transparent>
-            <Text>{this.props.back}</Text>
-            <Icon name='arrow-back' />
-          </Button>
+            <Text style={{fontSize:18,color:'white'}} >Bedeniniz {this.props.back.toUpperCase()}</Text> 
         </Right>
         }
       

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Image, TouchableOpacity } from "react-native";
 import { Container, Content, Button, Text, View, DeckSwiper, Card, CardItem, Thumbnail, Left, Body, Icon, Item } from 'native-base';
+import { Bars } from 'react-native-loader';
 import HeaderComponent from '../../../components/HeaderComponent';
 import Main from './Main'
 import Styles from './ProgramStyles'
@@ -104,8 +105,8 @@ const imagesx = {
     kiyafet: {
         eGom: require(`../../../util/kiyafet/eGom.png`),
         eGom1: require(`../../../util/kiyafet/eGom1.png`),
-        ePan: require(`../../../util/kiyafet/ePan.png`),
-        ePan1: require(`../../../util/kiyafet/ePan1.png`),
+        ePan: require(`../../../util/kiyafet/ePan1.png`),
+        ePan1: require(`../../../util/kiyafet/ePan.png`),
         kEl: require(`../../../util/kiyafet/kEl.png`),
         kEl1: require(`../../../util/kiyafet/kEl1.png`),
         kGom: require(`../../../util/kiyafet/kGom.png`),
@@ -118,14 +119,21 @@ const imagesx = {
 export default class Program extends Component {
     constructor(props) {
         super(props);
-        this.state = { result: {}, cloths: '' }
-        this.uri = '';
+        this.state = { result: {}, cloths: '' ,isReady:true}
+        this.uri = imagesx.erkek.m.index;
         this.img1 = imagesx.kiyafet.eGom;
         this.img2 = imagesx.kiyafet.eGom1;
         this.img3 = imagesx.kiyafet.ePan;
         this.img4 = imagesx.kiyafet.ePan1;
         this.img5 = imagesx.kiyafet.kEl;
         this.img6 = imagesx.kiyafet.kEl1;
+    }
+    renderSpinner(){        
+            return (
+                <View style={Styles.spinner}>
+                  <Bars size={20} color="#4A4A4A" />
+                </View>
+              );        
     }
     componentWillMount() {
         this.setState({ result: this.props.result })
@@ -283,23 +291,27 @@ export default class Program extends Component {
                     this.uri = imagesx.kadın.xl.El1;
                 }
             }
-        }
+        }        
         return (
             <Container>
                 <HeaderComponent navigation={this.props.navigation} back={this.state.result.beden} />
                 <Content>
                     {
-                        this.state.result.cinsiyet !== undefined &&
+                        this.state.isReady &&
                         <Main src={this.uri} />
                         ||
-                        <Main src={require(`../../../util/erkek/l.png`)} />
+                        this.renderSpinner()
                     }
                     <View style={{ flex: 1, flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <View style={Styles.textImage}>
                                 <Text style={{ color: 'white' }}>Gömlek</Text>
                             </View>
-                            <TouchableOpacity activeOpacity={0.8} onPress={() => { this.setState({ cloths: 'gom' }) }} style={Styles.button}>
+                            <TouchableOpacity activeOpacity={0.8} 
+                            onPress={() => { 
+                                this.setState({isReady:false});
+                             setTimeout(()=>{this.setState({ cloths: 'gom' ,isReady:true})},2000); 
+                             }} style={Styles.button}>
                                 <Image source={this.img1} style={Styles.image} />
                             </TouchableOpacity>
                         </View>
@@ -307,7 +319,11 @@ export default class Program extends Component {
                             <View style={Styles.textImage}>
                                 <Text style={{ color: 'white' }}>Gömlek 2</Text>
                             </View>
-                            <TouchableOpacity activeOpacity={0.8} onPress={() => { this.setState({ cloths: 'gom1' }) }} style={Styles.button}>
+                            <TouchableOpacity activeOpacity={0.8} 
+                            onPress={() => { 
+                                this.setState({isReady:false});
+                                setTimeout(()=>{this.setState({ cloths: 'gom1' ,isReady:true})},2000); 
+                                }} style={Styles.button}>
                                 <Image source={this.img2} style={Styles.image} />
                             </TouchableOpacity>
                         </View>
@@ -315,7 +331,11 @@ export default class Program extends Component {
                             <View style={Styles.textImage}>
                                 <Text style={{ color: 'white' }}>Pantolon</Text>
                             </View>
-                            <TouchableOpacity activeOpacity={0.8} onPress={() => { this.setState({ cloths: 'pan' }) }} style={Styles.button}>
+                            <TouchableOpacity activeOpacity={0.8} 
+                            onPress={() => {
+                                this.setState({isReady:false});
+                                setTimeout(()=>{this.setState({ cloths: 'pan' ,isReady:true})},2000); 
+                                }} style={Styles.button}>
                                 <Image source={this.img3} style={Styles.image} />
                             </TouchableOpacity>
                         </View>
@@ -323,7 +343,11 @@ export default class Program extends Component {
                             <View style={Styles.textImage}>
                                 <Text style={{ color: 'white' }}>Pantolon 2</Text>
                             </View>
-                            <TouchableOpacity activeOpacity={0.8} onPress={() => { this.setState({ cloths: 'pan1' }) }} style={Styles.button}>
+                            <TouchableOpacity activeOpacity={0.8} 
+                            onPress={() => {
+                                this.setState({isReady:false});
+                                setTimeout(()=>{this.setState({ cloths: 'pan1' ,isReady:true})},2000);
+                                }} style={Styles.button}>
                                 <Image source={this.img4} style={Styles.image} />
                             </TouchableOpacity>
                         </View>
@@ -334,7 +358,11 @@ export default class Program extends Component {
                                     <View style={Styles.textImage}>
                                         <Text style={{ color: 'white' }}>Elbise</Text>
                                     </View>
-                                    <TouchableOpacity activeOpacity={0.8} onPress={() => { this.setState({ cloths: 'el' }) }} style={Styles.button}>
+                                    <TouchableOpacity activeOpacity={0.8}
+                                     onPress={() => { 
+                                        this.setState({isReady:false});
+                                         setTimeout(()=>{this.setState({ cloths: 'el' ,isReady:true})},2000);
+                                         }} style={Styles.button}>
                                         <Image source={this.img5} style={Styles.image} />
                                     </TouchableOpacity>
                                 </View>
@@ -342,7 +370,11 @@ export default class Program extends Component {
                                     <View style={Styles.textImage}>
                                         <Text style={{ color: 'white' }}>Elbise 2</Text>
                                     </View>
-                                    <TouchableOpacity activeOpacity={0.8} onPress={() => { this.setState({ cloths: 'el1' }) }} style={Styles.button}>
+                                    <TouchableOpacity activeOpacity={0.8}
+                                     onPress={() => { 
+                                        this.setState({isReady:false});
+                                         setTimeout(()=>{this.setState({ cloths: 'el1' ,isReady:true})},2000);
+                                         }} style={Styles.button}>
                                         <Image source={this.img6} style={Styles.image} />
                                     </TouchableOpacity>
                                 </View>

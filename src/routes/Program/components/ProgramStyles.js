@@ -17,6 +17,14 @@ const Styles=StyleSheet.create({
     },
     button:{
         flexDirection:'row'
+    },
+    spinner:{
+        width:width,
+        flex: 1,
+    backgroundColor: '#8b898f',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height:height*(4/7),
     }
 
 })

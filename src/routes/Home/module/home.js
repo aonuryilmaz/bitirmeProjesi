@@ -114,8 +114,6 @@ export function calculateSize() {
                 console.log("geçersiz");
             }
         }
-        console.log(size);
-        console.log(woman.xs);
     }
 }
 /*export function setSize(payload) {

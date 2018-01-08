@@ -1,16 +1,25 @@
 import React from 'react';
 import HomeContainer from './Home/containers/HomeContainer';
 import ProgramContainer from './Program/containers/ProgramContainer';
-import Favorites from './favorites';
-import Calls from './calls';
+import LoginContainer from './Login/containers/LoginContainer';
 import SideBar from './SideBar/components/SideBar';
+import LoginScreen from './Login/components/Login'
 
 import { Ionicons } from '@expo/vector-icons';
 import { StackNavigator, DrawerNavigator, DrawerItems, TabNavigator } from 'react-navigation';
 
+
 export const Home=StackNavigator({
     Home:{
         screen:HomeContainer
+    }
+},{
+    headerMode:'none'
+});
+
+export const Login=StackNavigator({
+    Login:{
+        screen:LoginContainer
     }
 },{
     headerMode:'none'
@@ -23,33 +32,11 @@ export const Program=StackNavigator({
 },{
     headerMode:'none'
 })
-
-export const Tabs = TabNavigator({
-    Favorites: {
-        screen: Favorites,
-        navigationOptions: {
-            title: 'Favorites',
-            tabBarIcon: ({focused}) => <Ionicons name="star" label="Calls" selected={focused}/>  
-        },
-    },
-    Calls: {
-        screen: Program,
-        navigationOptions: {
-            title: 'Calls',
-            tabBarIcon: ({focused}) => <Ionicons name="phone" label="Calls" selected={focused}/>              
-            
-        },
-    }
-}, {
-    initialRouteName: 'Calls',
-    tabBarPosition: 'bottom'
-});
-
 const Drawer=DrawerNavigator({
-    Home:{screen:Home},
+    AnaSayfa:{screen:Home},
     Program:{screen:Program}
 },{
-    initialRouteName:'Home',
+    initialRouteName:'AnaSayfa',
     contentOptions: {
         activeTintColor: "#e91e63"
     },
@@ -61,13 +48,10 @@ export const Router = StackNavigator({
     Drawer:{
         screen:Drawer
     },
-    Home:{
-        screen:Home
-    },
-    Program:{
-        screen:Program
+    Login:{
+        screen:Login
     }
 },{
-    initialRouteName:'Drawer',
+    initialRouteName:'Login',
     headerMode:'none'
 })

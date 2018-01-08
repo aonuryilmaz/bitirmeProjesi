@@ -5,6 +5,12 @@ const Styles=StyleSheet.create({
         flex:1,
         marginTop:5
     },
+    containerLoader: {
+        flex: 1,
+        backgroundColor: '#FFFFFF',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
     saveButton:{
         marginTop:5,
         marginLeft:4,
